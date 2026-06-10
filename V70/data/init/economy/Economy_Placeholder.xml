@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LLM.entry
+STRUCTURE_EXPLANATION: Songs of Syx Economy definitions.
+<economy> is the root.
+FILE_CONTEXT: V70/data/init/economy/Economy_Placeholder.xml
+VERSION: 0.0.1
+-->
+<economy>
+    <!-- Placeholder for economic multipliers -->
+</economy>

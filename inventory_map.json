@@ -1,0 +1,43 @@
+{
+  "races": {
+    "HUMAN": {
+      "path": "V70/data/init/races/Races_Placeholder.xml"
+    }
+  },
+  "resources": {
+    "STEEL": {
+      "path": "V70/data/init/resources/Resources_Placeholder.xml",
+      "value": 50,
+      "weight": 1.0
+    }
+  },
+  "rooms": {
+    "WAREHOUSE": {
+      "path": "V70/data/init/rooms/Rooms_Placeholder.xml"
+    }
+  },
+  "tech": {
+    "BASIC_MINING": {
+      "path": "V70/data/init/tech/Tech_Placeholder.xml"
+    }
+  },
+  "diplomacy": {
+    "OFFER_TRIBUTE": {
+      "path": "V70/data/init/diplomacy/Diplomacy_Placeholder.xml"
+    }
+  },
+  "factions": {
+    "ALLIANZ": {
+      "path": "V70/data/init/factions/Factions_Placeholder.xml"
+    },
+    "HORDE": {
+      "path": "V70/data/init/factions/Factions_Placeholder.xml"
+    }
+  },
+  "world": {
+    "CAPITAL_REGION": {
+      "path": "V70/data/init/world/World_Placeholder.xml"
+    }
+  },
+  "items": {}
+}

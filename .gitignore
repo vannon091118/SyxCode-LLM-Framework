@@ -1,0 +1,8 @@
+# Maven build directories
+target/
+
+# Local machine-specific properties
+local.properties
+
+# Node.js dependencies
+node_modules/

@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.syxcraft</groupId>
+  <artifactId>syxcraft-overhaul</artifactId>
+  <version>0.0.1</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <game.version.major>70</game.version.major>
+    <game.version.minor>0</game.version.minor>
+    <game.jar.name>SongsOfSyx.jar</game.jar.name>
+    <!-- Default path, should be overridden in local.properties -->
+    <game.install.directory>../Songs of Syx</game.install.directory>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.songsofsyx</groupId>
+      <artifactId>songsofsyx</artifactId>
+      <version>${game.version.major}.${game.version.minor}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>read-project-properties</goal>
+            </goals>
+            <configuration>
+              <files>
+                <file>local.properties</file>
+              </files>
+              <quiet>true</quiet>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <id>install-game-jar</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>com.songsofsyx</groupId>
+              <artifactId>songsofsyx</artifactId>
+              <version>${game.version.major}.${game.version.minor}</version>
+              <packaging>jar</packaging>
+              <file>${game.install.directory}/${game.jar.name}</file>
+              <generatePom>true</generatePom>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LLM.entry
+STRUCTURE_EXPLANATION: Songs of Syx Technology logic.
+<tech> is the root.
+<technology> defines a researchable node with 'id', 'name', 'cost'.
+FILE_CONTEXT: V70/data/init/tech/Tech_Placeholder.xml
+VERSION: 0.0.1
+-->
+<tech>
+    <technology id="BASIC_MINING" name="¤¤Basic_Mining" cost="100">
+        <description name="¤¤Basic_Mining_Desc" />
+    </technology>
+</tech>

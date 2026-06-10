@@ -1,0 +1,4 @@
+NAME: "Syxcraft Overhaul"
+VERSION: "0.0.1"
+DESCRIPTION: "LLM-assisted mod overhaul for Songs of Syx. Focus on structural integrity and exhaustive documentation."
+AUTHOR: "Gemini CLI & Vannon"

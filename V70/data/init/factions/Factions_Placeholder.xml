@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LLM.entry
+STRUCTURE_EXPLANATION: Songs of Syx Faction logic.
+<factions> is the root.
+<faction> defines a political entity with 'id', 'name'.
+FILE_CONTEXT: V70/data/init/factions/Factions_Placeholder.xml
+VERSION: 0.0.1
+-->
+<factions>
+    <faction id="ALLIANZ" name="¤¤Allianz">
+        <type id="ORDER" />
+    </faction>
+    <faction id="HORDE" name="¤¤Horde">
+        <type id="CHAOS" />
+    </faction>
+</factions>

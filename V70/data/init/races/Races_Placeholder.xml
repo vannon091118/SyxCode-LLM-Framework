@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LLM.entry
+STRUCTURE_EXPLANATION: Songs of Syx Race definitions.
+<races> is the root.
+<race> defines a species with 'id', 'name'.
+FILE_CONTEXT: V70/data/init/races/Races_Placeholder.xml
+VERSION: 0.0.1
+-->
+<races>
+    <race id="HUMAN" name="¤¤Human">
+        <description name="¤¤Human_Desc" />
+    </race>
+</races>

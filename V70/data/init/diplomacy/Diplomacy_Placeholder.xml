@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LLM.entry
+STRUCTURE_EXPLANATION: Songs of Syx Diplomacy logic.
+<diplomacy> is the root.
+<action> defines diplomatic interactions.
+FILE_CONTEXT: V70/data/init/diplomacy/Diplomacy_Placeholder.xml
+VERSION: 0.0.1
+-->
+<diplomacy>
+    <action id="OFFER_TRIBUTE" name="¤¤Offer_Tribute">
+        <cost value="500" />
+    </action>
+</diplomacy>

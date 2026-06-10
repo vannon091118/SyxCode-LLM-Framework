@@ -1,0 +1,12 @@
+{
+  "sheets": {},
+  "sprites": {
+    "RESOURCES_STEEL": {
+      "sheet": "resources.png",
+      "index": 0,
+      "width": 32,
+      "height": 32
+    }
+  },
+  "ui_icons": {}
+}

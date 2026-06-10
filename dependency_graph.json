@@ -1,0 +1,25 @@
+{
+  "nodes": {
+    "STEEL": { "type": "resource" },
+    "HUMAN": { "type": "race" },
+    "WAREHOUSE": { "type": "room" },
+    "BASIC_MINING": { "type": "tech" },
+    "ALLIANZ": { "type": "faction" },
+    "HORDE": { "type": "faction" },
+    "CAPITAL_REGION": { "type": "world_region" }
+  },
+  "edges": [
+    { "from": "BASIC_MINING", "to": "STEEL", "type": "requires" },
+    { "from": "WAREHOUSE", "to": "STEEL", "type": "requires" },
+    { "from": "ALLIANZ", "to": "CAPITAL_REGION", "type": "spawns_in" },
+    { "from": "HORDE", "to": "CAPITAL_REGION", "type": "spawns_in" }
+  ],
+  "side_effects": {
+    "java_scripts": {
+      "FactionEconomyScript": {
+        "affects": ["STEEL_PRICE", "HORDE_TAX_RATE"],
+        "description": "Adjusts prices based on faction dominance."
+      }
+    }
+  }
+}

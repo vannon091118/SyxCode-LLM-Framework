@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LLM.entry
+STRUCTURE_EXPLANATION: Songs of Syx Resources logic. 
+ENGINE_DEFAULTS: price=10, weight=1.0, stack-size=16 (if omitted).
+FILE_CONTEXT: V70/data/init/resources/Resources_Placeholder.xml
+VERSION: 0.0.1
+-->
+<resources>
+    <resource id="STEEL" name="¤¤Steel" value="50" weight="1.0">
+        <sprite sprite="RESOURCES_STEEL" />
+        <category material="true" />
+        <storage stack-size="32" />
+        <properties>
+            <construction />
+            <tradeable />
+        </properties>
+    </resource>
+</resources>

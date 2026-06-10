@@ -1,0 +1,26 @@
+{
+  "strings": [
+    "¤¤Steel",
+    "¤¤Human",
+    "¤¤Human_Desc",
+    "¤¤Warehouse",
+    "¤¤Basic_Mining",
+    "¤¤Basic_Mining_Desc",
+    "¤¤Offer_Tribute",
+    "¤¤Allianz",
+    "¤¤Horde",
+    "¤¤Capital_Region"
+  ],
+  "mappings": {
+    "¤¤Steel": "Steel",
+    "¤¤Human": "Human",
+    "¤¤Human_Desc": "Standard human description",
+    "¤¤Warehouse": "Warehouse",
+    "¤¤Basic_Mining": "Basic Mining",
+    "¤¤Basic_Mining_Desc": "Allows extraction of basic ores.",
+    "¤¤Offer_Tribute": "Offer Tribute",
+    "¤¤Allianz": "The Alliance",
+    "¤¤Horde": "The Horde",
+    "¤¤Capital_Region": "Capital Region"
+  }
+}
