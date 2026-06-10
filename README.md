@@ -2,7 +2,7 @@
 
 > **LLM-safe validation framework with Zero-Trust Governance**
 > 
-> Built from SyxCraft's evolved governance architecture, extracted for universal reuse.
+> Universal reusable framework for data integrity, LLM alignment, and fail-closed validation.
 
 ---
 
@@ -25,6 +25,7 @@ SyxCode is a **framework for governance-first development**. It ensures:
 - ✅ **Fail-Closed:** No bypasses, shortcuts, or disabled validation
 - ✅ **Auto-Sync:** Versions and documentation auto-update from HISTORY.md
 - ✅ **Tamper Detection:** Framework files are protected with governance hashes
+- ✅ **Universal:** Use for any domain—configure paths for your project
 
 ---
 
@@ -43,7 +44,7 @@ SyxCode is a **framework for governance-first development**. It ensures:
 ### **Layer 3: Tamper Protection (Untouchable Gate)**
 - SHA-256 hashes stored in `governance_hashes.json`
 - Detects unauthorized modifications
-- Exit code 2 on tampering
+- Exit code 2 on tampering (or 0 after `npm run governance:update`)
 
 ---
 
@@ -59,12 +60,13 @@ npm install
 {
   "version": "0.0.35",
   "paths": {
-    "init_root": "V70/init",
-    "data_root": "V70/data",
+    "init_root": "data/init",
+    "data_root": "data",
     "doku": "doku"
   }
 }
 ```
+See `example/README.md` for full setup guide.
 
 ### **3. Validate**
 ```bash
@@ -89,9 +91,7 @@ npm run governance:update
 # VERSION: 0.0.35
 # STATE_HASH: a1b2c3d4e5f6
 # LAST_ENTRY: Entry 2
-# FILE_CONTEXT: V70/init/race/EXAMPLE.txt
-
-_ignoreVanilla: true,
+# FILE_CONTEXT: path/to/file.json
 ```
 
 ### **Format: Brace-and-Key**
@@ -120,6 +120,7 @@ DESCRIPTION: ¤¤Entity_Description,
 | `tools/governance_hashes.json` | SHA-256 hashes of protected framework files |
 | `doku/GOVERNANCE_PLAN.md` | Governance workflow & violation resolution |
 | `doku/LLM_ENTRY_DEFINITION.md` | LLM.entry standards & validation rules |
+| `example/README.md` | Step-by-step usage guide for new projects |
 
 ---
 
@@ -171,8 +172,8 @@ DESCRIPTION: ¤¤Entity_Description,
 └─────────────────────────────────────────┘
                     │
                     ▼
-         SUCCESS or FAILURE
-      (Exit code 0 or 1)
+          SUCCESS or FAILURE
+       (Exit code 0 or 1)
 ```
 
 ---
@@ -235,6 +236,8 @@ Current Version: **0.0.35**
 
 ## 📖 Further Reading
 
+- **[MIGRATION.md](MIGRATION.md)** — Explains cleanup and architectural separation
+- **[example/README.md](example/README.md)** — Step-by-step setup for your project
 - **[GOVERNANCE_PLAN.md](doku/GOVERNANCE_PLAN.md)** — Governance workflow & checklist
 - **[LLM_ENTRY_DEFINITION.md](doku/LLM_ENTRY_DEFINITION.md)** — Entry standards & validation rules
 - **[HISTORY.md](doku/HISTORY.md)** — Complete structural history

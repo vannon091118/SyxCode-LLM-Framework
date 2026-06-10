@@ -1,13 +1,13 @@
 {
   "framework_name": "SyxCode LLM Framework",
   "version": "0.0.35",
-  "game_version": "V70",
+  "description": "Universal governance framework - configure paths for your project",
   "paths": {
-    "init_root": "V70/init",
-    "data_root": "V70/data",
+    "init_root": "data/init",
+    "data_root": "data",
     "doku": "doku",
-    "scripts": "V70/script",
-    "extension": ".txt"
+    "scripts": "scripts",
+    "extension": ".json"
   },
   "validation": {
     "require_llm_entry": true,
@@ -20,5 +20,6 @@
     "enable_tamper_protection": true,
     "enable_interlock_audit": true,
     "enable_preflight_security": true
-  }
+  },
+  "_note": "Override 'paths' in your project-specific syxcode.config.json. See example/ for guidance."
 }
