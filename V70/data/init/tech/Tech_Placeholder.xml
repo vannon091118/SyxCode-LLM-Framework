@@ -2,8 +2,7 @@
 <!--
 LLM.entry
 STRUCTURE_EXPLANATION: Songs of Syx Technology logic.
-<tech> is the root.
-<technology> defines a researchable node with 'id', 'name', 'cost'.
+ENGINE_DEFAULTS: research_points_per_tick=1.0 (if omitted).
 FILE_CONTEXT: V70/data/init/tech/Tech_Placeholder.xml
 VERSION: 0.0.1
 -->

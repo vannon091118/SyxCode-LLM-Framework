@@ -2,8 +2,7 @@
 <!--
 LLM.entry
 STRUCTURE_EXPLANATION: Songs of Syx Faction logic.
-<factions> is the root.
-<faction> defines a political entity with 'id', 'name'.
+ENGINE_DEFAULTS: starting_favor=50, expansion_rate=1.0 (if omitted).
 FILE_CONTEXT: V70/data/init/factions/Factions_Placeholder.xml
 VERSION: 0.0.1
 -->

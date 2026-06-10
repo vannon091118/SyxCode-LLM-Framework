@@ -2,8 +2,7 @@
 <!--
 LLM.entry
 STRUCTURE_EXPLANATION: Songs of Syx Room definitions.
-<rooms> is the root.
-<room> defines a building type with 'id', 'name'.
+ENGINE_DEFAULTS: insulation=1.0, fire_risk=0.01 (if omitted).
 FILE_CONTEXT: V70/data/init/rooms/Rooms_Placeholder.xml
 VERSION: 0.0.1
 -->

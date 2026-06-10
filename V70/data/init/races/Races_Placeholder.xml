@@ -2,8 +2,7 @@
 <!--
 LLM.entry
 STRUCTURE_EXPLANATION: Songs of Syx Race definitions.
-<races> is the root.
-<race> defines a species with 'id', 'name'.
+ENGINE_DEFAULTS: base_speed=1.0, lifespan=80 (if omitted).
 FILE_CONTEXT: V70/data/init/races/Races_Placeholder.xml
 VERSION: 0.0.1
 -->

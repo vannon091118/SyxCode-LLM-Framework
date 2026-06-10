@@ -4,8 +4,16 @@ const { DOMParser } = require('xmldom');
 const crypto = require('crypto');
 
 const MOD_PATH = '.';
-const DOKU_PATH = path.join(MOD_PATH, 'doku');
-const DATA_PATH = path.join(MOD_PATH, 'V70', 'data', 'init');
+const CONFIG_FILE = path.join(MOD_PATH, 'syxcode.config.json');
+
+if (!fs.existsSync(CONFIG_FILE)) {
+    console.error('Configuration file syxcode.config.json missing!');
+    process.exit(1);
+}
+
+const config = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+const DOKU_PATH = path.join(MOD_PATH, config.paths.doku);
+const DATA_PATH = path.join(MOD_PATH, config.paths.data_init);
 const INTEGRITY_FILE = path.join(MOD_PATH, 'tools/integrity_hashes.json');
 
 function getHash(data) {
@@ -13,7 +21,7 @@ function getHash(data) {
 }
 
 function validateFiles() {
-    console.log('--- Starting Syxcraft Integrity & Hash Validation ---');
+    console.log(`--- Starting SyxCode Validation (${config.game_version}) ---`);
     let errors = [];
     let integrity = {};
     if (fs.existsSync(INTEGRITY_FILE)) {
@@ -28,63 +36,85 @@ function validateFiles() {
 
     let currentIntegrity = {};
 
-    // 1. Structural & Anti-Bypass (unchanged logic, just adding graph check)
+    // 1. Structural, LLM.entry & Anti-Bypass
     xmlFiles.forEach(file => {
-        // ... (existing logic)
+        const content = fs.readFileSync(file, 'utf8');
+        const fileName = path.relative(MOD_PATH, file).replace(/\\/g, '/');
+        const fileHash = getHash(content);
+        currentIntegrity[fileName] = fileHash;
+
+        // ACTUAL LLM.entry CHECK
+        if (config.validation.require_llm_entry) {
+            if (!content.includes('LLM.entry') || !content.includes('STRUCTURE_EXPLANATION') || !content.includes('ENGINE_DEFAULTS')) {
+                errors.push(`[VALIDATION] Missing or incomplete LLM.entry in ${fileName}. Requirements: LLM.entry, STRUCTURE_EXPLANATION, ENGINE_DEFAULTS.`);
+            }
+        }
+
+        const forbiddenPatterns = [/if\s*\(?\s*false\s*\)?\s*==\s*PASS/i, /SKIP_VALIDATION/i, /BYPASS_INTEGRITY/i];
+        forbiddenPatterns.forEach(pattern => {
+            if (pattern.test(content)) {
+                errors.push(`[SECURITY] Injection/Bypass detected in ${fileName}: ${pattern}`);
+            }
+        });
+
+        if (!history.includes(fileName)) {
+            errors.push(`[DOCS] File ${fileName} is not documented in HISTORY.md`);
+        }
     });
 
-    // 2. Dependency Graph Validation
-    console.log('--- Auditing Dependency Graph ---');
-    graph.edges.forEach(edge => {
-        const fromNode = graph.nodes[edge.from];
-        const toNode = graph.nodes[edge.to];
+    // 2. Dependency Graph Audit
+    if (config.validation.check_graph) {
+        console.log('--- Auditing Dependency Graph ---');
+        graph.edges.forEach(edge => {
+            const fromNode = graph.nodes[edge.from];
+            const toNode = graph.nodes[edge.to];
 
-        if (!fromNode) errors.push(`[GRAPH] Source node "${edge.from}" not defined in nodes.`);
-        if (!toNode) errors.push(`[GRAPH] Target node "${edge.to}" not defined in nodes.`);
+            if (!fromNode) errors.push(`[GRAPH] Source node "${edge.from}" not defined in nodes.`);
+            if (!toNode) errors.push(`[GRAPH] Target node "${edge.to}" not defined in nodes.`);
 
-        // Verify if both exist in inventory_map.json
-        const inv = JSON.stringify(inventory);
-        if (!inv.includes(`"${edge.from}"`)) errors.push(`[GRAPH] Node "${edge.from}" missing from inventory_map.`);
-        if (!inv.includes(`"${edge.to}"`)) errors.push(`[GRAPH] Node "${edge.to}" missing from inventory_map.`);
-    });
+            const invStr = JSON.stringify(inventory);
+            if (!invStr.includes(`"${edge.from}"`)) errors.push(`[GRAPH] Node "${edge.from}" missing from inventory_map.`);
+            if (!invStr.includes(`"${edge.to}"`)) errors.push(`[GRAPH] Node "${edge.to}" missing from inventory_map.`);
+        });
+    }
 
     // 3. Data Integrity & Hash Comparison
-    // ... (existing logic)
-    for (const category in inventory) {
-        for (const [id, data] of Object.entries(inventory[category])) {
-            const fullPath = path.join(MOD_PATH, data.path);
-            if (!fs.existsSync(fullPath)) {
-                errors.push(`[INVENTORY] ${category}:${id} references missing file: ${data.path}`);
-                continue;
-            }
-
-            const xmlContent = fs.readFileSync(fullPath, 'utf8');
-            const doc = new DOMParser().parseFromString(xmlContent, 'text/xml');
-            const tags = doc.getElementsByTagName('*');
-            let found = false;
-
-            for (let i = 0; i < tags.length; i++) {
-                const node = tags[i];
-                if (node.getAttribute('id') === id || node.getAttribute('identifier') === id) {
-                    found = true;
-                    // Hash every resource entry specifically
-                    const entryHash = getHash(node.toString());
-                    const entryId = `${category}:${id}`;
-                    
-                    if (integrity[entryId] && integrity[entryId] !== entryHash) {
-                        console.log(`[INTEGRITY] Change detected in ${entryId}. Old: ${integrity[entryId].substring(0,8)}, New: ${entryHash.substring(0,8)}`);
-                    }
-                    currentIntegrity[entryId] = entryHash;
+    if (config.validation.check_integrity) {
+        for (const category in inventory) {
+            for (const [id, data] of Object.entries(inventory[category])) {
+                const fullPath = path.join(MOD_PATH, data.path);
+                if (!fs.existsSync(fullPath)) {
+                    errors.push(`[INVENTORY] ${category}:${id} references missing file: ${data.path}`);
+                    continue;
                 }
-            }
 
-            if (!found) {
-                errors.push(`[DATA] ${category}:${id} defined in inventory map but missing in ${data.path}`);
+                const xmlContent = fs.readFileSync(fullPath, 'utf8');
+                const doc = new DOMParser().parseFromString(xmlContent, 'text/xml');
+                const tags = doc.getElementsByTagName('*');
+                let found = false;
+
+                for (let i = 0; i < tags.length; i++) {
+                    const node = tags[i];
+                    if (node.getAttribute('id') === id || node.getAttribute('identifier') === id) {
+                        found = true;
+                        const entryHash = getHash(node.toString());
+                        const entryId = `${category}:${id}`;
+                        
+                        if (integrity[entryId] && integrity[entryId] !== entryHash) {
+                            console.log(`[INTEGRITY] Change detected in ${entryId}. Old: ${integrity[entryId].substring(0,8)}, New: ${entryHash.substring(0,8)}`);
+                        }
+                        currentIntegrity[entryId] = entryHash;
+                    }
+                }
+
+                if (!found) {
+                    errors.push(`[DATA] ${category}:${id} defined in inventory map but missing in ${data.path}`);
+                }
             }
         }
     }
 
-    // 3. String Matrix Overlap & Conflict Detection
+    // 4. String Matrix Sync
     const usedStrings = new Map();
     xmlFiles.forEach(file => {
         const content = fs.readFileSync(file, 'utf8');
@@ -102,17 +132,17 @@ function validateFiles() {
         }
     });
 
-    // Save new integrity state
     fs.writeFileSync(INTEGRITY_FILE, JSON.stringify(currentIntegrity, null, 2));
 
     if (errors.length > 0) {
-        console.error('\n!!! INTEGRITY FAILURE !!!');
+        console.error('\n!!! VALIDATION FAILURE !!!');
         errors.forEach(err => console.error(err));
         process.exit(1);
     } else {
-        console.log('--- INTEGRITY SUCCESS: All hashes and dependencies verified ---');
+        console.log('--- SUCCESS: Integrity & Configuration verified ---');
     }
 }
+
 
 function getAllFiles(dirPath, extension) {
     let files = [];

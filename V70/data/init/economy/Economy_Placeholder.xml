@@ -2,7 +2,7 @@
 <!--
 LLM.entry
 STRUCTURE_EXPLANATION: Songs of Syx Economy definitions.
-<economy> is the root.
+ENGINE_DEFAULTS: inflation_rate=0.01, trade_tax=0.05 (if omitted).
 FILE_CONTEXT: V70/data/init/economy/Economy_Placeholder.xml
 VERSION: 0.0.1
 -->

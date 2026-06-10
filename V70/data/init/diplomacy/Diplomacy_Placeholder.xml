@@ -2,8 +2,7 @@
 <!--
 LLM.entry
 STRUCTURE_EXPLANATION: Songs of Syx Diplomacy logic.
-<diplomacy> is the root.
-<action> defines diplomatic interactions.
+ENGINE_DEFAULTS: relation_impact=0, duration=infinite (if omitted).
 FILE_CONTEXT: V70/data/init/diplomacy/Diplomacy_Placeholder.xml
 VERSION: 0.0.1
 -->

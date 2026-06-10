@@ -1,0 +1,13 @@
+{
+  "game_version": "V70",
+  "paths": {
+    "data_init": "V70/data/init",
+    "doku": "doku",
+    "scripts": "V70/script"
+  },
+  "validation": {
+    "require_llm_entry": true,
+    "check_integrity": true,
+    "check_graph": true
+  }
+}

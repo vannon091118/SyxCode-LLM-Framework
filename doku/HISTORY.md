@@ -91,4 +91,21 @@ This document tracks all structural changes to the codebase. No entries are ever
 + dependency_graph.json (side_effects expansion)
 + doku/LLM_ENTRY_DEFINITION.md (update)
 ```
+
+### Entry 10: GitHub Repository Initialization [2026-06-10]
+- **Action**: Initialized local Git repository, created initial commit, and pushed to GitHub.
+- **Remote**: https://github.com/vannon091118/SyxCraft
+- **Branch**: main
+
+### Entry 11: LLM Safe SyxCode Rebranding & Framework Publication [2026-06-10]
+- **Action**: Published the project as a standalone framework: "LLM Safe SyxCode". Created detailed README.md explaining the SOT and validation architecture. Initialized new repo for the framework.
+- New Framework Repo: https://github.com/vannon091118/SyxCode-LLM-Framework
+
+### Entry 12: Framework Refactoring & Logic Hardening [2026-06-10]
+- **Action**: Addressed technical debt. 
+  - Implemented `syxcode.config.json` for generic path management.
+  - Upgraded `validator.js` to perform mandatory `LLM.entry` and `ENGINE_DEFAULTS` checks in XML files.
+  - Created clean JSON templates in `templates/` for the framework.
+- **Impact**: The framework is now portable, configurable, and performs deep logical verification.
 ---
+

@@ -2,8 +2,7 @@
 <!--
 LLM.entry
 STRUCTURE_EXPLANATION: Songs of Syx World logic.
-<world> is the root.
-<region> defines a world map area.
+ENGINE_DEFAULTS: population_cap=1000, resource_richness=1.0 (if omitted).
 FILE_CONTEXT: V70/data/init/world/World_Placeholder.xml
 VERSION: 0.0.1
 -->

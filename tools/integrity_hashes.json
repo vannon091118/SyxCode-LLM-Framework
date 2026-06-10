@@ -1,4 +1,12 @@
 {
+  "V70/data/init/diplomacy/Diplomacy_Placeholder.xml": "d55921a759d2dc814497ec5c723eca48e1450447db790f79b3f6b22d4e02e791",
+  "V70/data/init/economy/Economy_Placeholder.xml": "fb450a8827d23206417901831a923c8102277a7ceea73ec92e19efa1e4a30179",
+  "V70/data/init/factions/Factions_Placeholder.xml": "2af86410f25062cebee3155e093a875f51a1139fc496dd0dbd8ae0a1625c71f4",
+  "V70/data/init/races/Races_Placeholder.xml": "1630ef65cd48e289b403bca41bb973fe47b150e06b5180500a54eab2cb56a254",
+  "V70/data/init/resources/Resources_Placeholder.xml": "e1b17824e2e93ac197955d3376ed137665af5e58e963725191e62310ac0da010",
+  "V70/data/init/rooms/Rooms_Placeholder.xml": "69c366abf50b8ddef42a0f4c34d84774acafe811cfa3f527034bb2676f635e12",
+  "V70/data/init/tech/Tech_Placeholder.xml": "c034b0829a675d51aee3d6dd4b5213d1efbe0267e2276e69be87b029b3e20ae1",
+  "V70/data/init/world/World_Placeholder.xml": "c1e31491de64a4f2826b9fc1995334769442cef173106dd0b9626b698dd3bc16",
   "races:HUMAN": "773f5d33ed77622121fe7521031213480298fbd2fe9c26cabfc5c5677037283c",
   "resources:STEEL": "77d49e4aea4e3c404ff957173420d5200e47b4362bb3c55e278b63bcc0ee6fda",
   "rooms:WAREHOUSE": "2703218e97e0fae041008253d9566f6c958f5a390487c7c943dae48939e85cfb",
