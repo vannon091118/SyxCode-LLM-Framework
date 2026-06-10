@@ -1,13 +1,22 @@
 {
-  "name": "syxcraft-overhaul",
-  "version": "0.0.1",
-  "description": "Validation and development tools for Syxcraft mod overhaul",
-  "main": "index.js",
+  "name": "syxcode-llm-framework",
+  "version": "0.0.35",
+  "description": "LLM-safe validation and development framework with Zero-Trust Governance",
+  "main": "tools/validator.js",
   "scripts": {
-    "test": "node tools/validator.js"
+    "test": "node tools/validator.js",
+    "governance:update": "node tools/governance_updater.js"
   },
+  "keywords": [
+    "validation",
+    "framework",
+    "governance",
+    "syx-engine",
+    "llm-safe"
+  ],
+  "author": "Vannon",
+  "license": "MIT",
   "devDependencies": {
-    "diff": "^5.2.0",
-    "xmldom": "^0.6.0"
+    "crypto": "^1.0.1"
   }
 }

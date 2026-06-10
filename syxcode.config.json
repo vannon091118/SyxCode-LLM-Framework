@@ -1,13 +1,24 @@
 {
+  "framework_name": "SyxCode LLM Framework",
+  "version": "0.0.35",
   "game_version": "V70",
   "paths": {
-    "data_init": "V70/data/init",
+    "init_root": "V70/init",
+    "data_root": "V70/data",
     "doku": "doku",
-    "scripts": "V70/script"
+    "scripts": "V70/script",
+    "extension": ".txt"
   },
   "validation": {
     "require_llm_entry": true,
     "check_integrity": true,
-    "check_graph": true
+    "check_graph": true,
+    "check_governance": true,
+    "require_state_hash": true
+  },
+  "governance": {
+    "enable_tamper_protection": true,
+    "enable_interlock_audit": true,
+    "enable_preflight_security": true
   }
 }
