@@ -101,7 +101,7 @@ function validateFiles() {
                         const entryId = `${category}:${id}`;
                         
                         if (integrity[entryId] && integrity[entryId] !== entryHash) {
-                            console.log(`[INTEGRITY] Change detected in ${entryId}. Old: ${integrity[entryId].substring(0,8)}, New: ${entryHash.substring(0,8)}`);
+                            errors.push(`[INTEGRITY] Unauthorized change in ${entryId}. Run must be approved.`);
                         }
                         currentIntegrity[entryId] = entryHash;
                     }
