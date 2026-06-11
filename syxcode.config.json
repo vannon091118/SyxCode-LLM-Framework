@@ -1,6 +1,6 @@
 {
   "framework_name": "SyxCode LLM Framework",
-  "version": "0.0.35",
+  "version": "0.0.2",
   "description": "Universal governance framework - configure paths for your project",
   "paths": {
     "init_root": "data/init",

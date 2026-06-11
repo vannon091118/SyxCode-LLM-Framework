@@ -1,6 +1,6 @@
 {
   "name": "syxcode-llm-framework",
-  "version": "0.0.35",
+  "version": "0.0.2",
   "description": "LLM-safe validation and development framework with Zero-Trust Governance",
   "main": "tools/validator.js",
   "scripts": {
